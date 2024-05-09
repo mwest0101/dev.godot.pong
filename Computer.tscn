@@ -9,6 +9,7 @@ height = 112.0
 
 [node name="Computer" type="CharacterBody2D"]
 position = Vector2(1118, 324)
+scale = Vector2(2, 1)
 script = ExtResource("1_c6ujh")
 metadata/_edit_group_ = true
 

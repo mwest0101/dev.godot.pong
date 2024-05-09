@@ -9,6 +9,7 @@ height = 112.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(34, 324)
+scale = Vector2(2.04, 1)
 script = ExtResource("1_yrsfl")
 metadata/_edit_group_ = true
 
