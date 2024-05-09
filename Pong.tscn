@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3055i7whu0aa"]
+
+[ext_resource type="Script" path="res://Pong.gd" id="1_34hu4"]
+[ext_resource type="PackedScene" uid="uid://0bjncgxp2i78" path="res://Player.tscn" id="1_p4g0w"]
+[ext_resource type="PackedScene" uid="uid://b6r8fi6b7bx00" path="res://Ball.tscn" id="2_encmk"]
+[ext_resource type="PackedScene" uid="uid://bxy7g2se8jmhg" path="res://Computer.tscn" id="3_u4g1w"]
+[ext_resource type="Texture2D" uid="uid://udh4n8mgpii7" path="res://img/sprites/pared.jpg" id="4_g0ail"]
+[ext_resource type="Texture2D" uid="uid://cibtxqk87dfki" path="res://img/sprites/paredv.jpg" id="6_bta6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ltg7"]
+size = Vector2(1154, 57)
+
+[node name="Pong" type="Node2D"]
+script = ExtResource("1_34hu4")
+
+[node name="Player" parent="." instance=ExtResource("1_p4g0w")]
+
+[node name="Ball" parent="." instance=ExtResource("2_encmk")]
+
+[node name="Computer" parent="." instance=ExtResource("3_u4g1w")]
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TopWall"]
+texture_repeat = 2
+position = Vector2(577, 25)
+scale = Vector2(0.974619, 0.519231)
+texture = ExtResource("4_g0ail")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(577, 22.5)
+shape = SubResource("RectangleShape2D_2ltg7")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+position = Vector2(1, 593)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomWall"]
+texture_repeat = 2
+position = Vector2(577, 25)
+scale = Vector2(0.974619, 0.519231)
+texture = ExtResource("4_g0ail")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(577, 22.5)
+shape = SubResource("RectangleShape2D_2ltg7")
+
+[node name="GoalLeft" type="Area2D" parent="."]
+position = Vector2(-23, 319)
+scale = Vector2(0.5, 0.55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GoalLeft"]
+texture = ExtResource("6_bta6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft"]
+
+[node name="GoalRight" type="Area2D" parent="."]
+position = Vector2(1176, 319)
+scale = Vector2(0.5, 0.55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GoalRight"]
+texture = ExtResource("6_bta6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalRight"]
+
+[connection signal="body_entered" from="GoalRight" to="." method="_on_goal_right_body_entered"]
