@@ -1,23 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3055i7whu0aa"]
+[gd_scene load_steps=10 format=3 uid="uid://c3055i7whu0aa"]
 
-[ext_resource type="Script" path="res://Pong.gd" id="1_34hu4"]
-[ext_resource type="PackedScene" uid="uid://0bjncgxp2i78" path="res://Player.tscn" id="1_p4g0w"]
-[ext_resource type="PackedScene" uid="uid://b6r8fi6b7bx00" path="res://Ball.tscn" id="2_encmk"]
-[ext_resource type="PackedScene" uid="uid://bxy7g2se8jmhg" path="res://Computer.tscn" id="3_u4g1w"]
-[ext_resource type="Texture2D" uid="uid://udh4n8mgpii7" path="res://img/sprites/pared.jpg" id="4_g0ail"]
-[ext_resource type="Texture2D" uid="uid://cibtxqk87dfki" path="res://img/sprites/paredv.jpg" id="6_bta6y"]
+[ext_resource type="Script" path="res://pong.gd" id="1_dvwiq"]
+[ext_resource type="PackedScene" uid="uid://0bjncgxp2i78" path="res://player.tscn" id="2_ivsdj"]
+[ext_resource type="PackedScene" uid="uid://b6r8fi6b7bx00" path="res://ball.tscn" id="3_sn7lr"]
+[ext_resource type="PackedScene" uid="uid://bxy7g2se8jmhg" path="res://computer.tscn" id="4_anxtt"]
+[ext_resource type="Texture2D" uid="uid://udh4n8mgpii7" path="res://img/sprites/pared.jpg" id="5_gbhfa"]
+[ext_resource type="Texture2D" uid="uid://cibtxqk87dfki" path="res://img/sprites/paredv.jpg" id="6_qf15e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ltg7"]
 size = Vector2(1154, 57)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwg1s"]
+size = Vector2(102, 1183.64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn763"]
+size = Vector2(104, 1174.55)
+
 [node name="Pong" type="Node2D"]
-script = ExtResource("1_34hu4")
+script = ExtResource("1_dvwiq")
 
-[node name="Player" parent="." instance=ExtResource("1_p4g0w")]
+[node name="Player" parent="." instance=ExtResource("2_ivsdj")]
 
-[node name="Ball" parent="." instance=ExtResource("2_encmk")]
+[node name="Ball" parent="." instance=ExtResource("3_sn7lr")]
 
-[node name="Computer" parent="." instance=ExtResource("3_u4g1w")]
+[node name="Computer" parent="." instance=ExtResource("4_anxtt")]
 
 [node name="TopWall" type="StaticBody2D" parent="."]
 metadata/_edit_group_ = true
@@ -26,7 +32,7 @@ metadata/_edit_group_ = true
 texture_repeat = 2
 position = Vector2(577, 25)
 scale = Vector2(0.974619, 0.519231)
-texture = ExtResource("4_g0ail")
+texture = ExtResource("5_gbhfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
 position = Vector2(577, 22.5)
@@ -40,21 +46,23 @@ metadata/_edit_group_ = true
 texture_repeat = 2
 position = Vector2(577, 25)
 scale = Vector2(0.974619, 0.519231)
-texture = ExtResource("4_g0ail")
+texture = ExtResource("5_gbhfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
 position = Vector2(577, 22.5)
 shape = SubResource("RectangleShape2D_2ltg7")
 
 [node name="GoalLeft" type="Area2D" parent="."]
-position = Vector2(-23, 319)
+position = Vector2(-27, 320)
 scale = Vector2(0.5, 0.55)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalLeft"]
-texture = ExtResource("6_bta6y")
+texture = ExtResource("6_qf15e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft"]
+position = Vector2(1, -0.909302)
+shape = SubResource("RectangleShape2D_lwg1s")
 
 [node name="GoalRight" type="Area2D" parent="."]
 position = Vector2(1176, 319)
@@ -62,8 +70,13 @@ scale = Vector2(0.5, 0.55)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalRight"]
-texture = ExtResource("6_bta6y")
+texture = ExtResource("6_qf15e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalRight"]
+position = Vector2(0, 1.81805)
+shape = SubResource("RectangleShape2D_fn763")
 
+[connection signal="area_shape_entered" from="GoalLeft" to="." method="_on_goal_left_area_shape_entered"]
+[connection signal="body_entered" from="GoalLeft" to="." method="_on_goal_left_body_entered"]
+[connection signal="body_shape_entered" from="GoalLeft" to="." method="_on_goal_left_body_shape_entered"]
 [connection signal="body_entered" from="GoalRight" to="." method="_on_goal_right_body_entered"]

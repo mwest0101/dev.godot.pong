@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0bjncgxp2i78"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_yrsfl"]
+[ext_resource type="Script" path="res://player.gd" id="1_yrsfl"]
 [ext_resource type="Texture2D" uid="uid://cxwqf7ndt36ur" path="res://img/sprites/paddle_1.png" id="2_rsb2n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_370oy"]
@@ -8,7 +8,7 @@ radius = 6.0
 height = 112.0
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(20, 324)
+position = Vector2(34, 324)
 script = ExtResource("1_yrsfl")
 metadata/_edit_group_ = true
 
