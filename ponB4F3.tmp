@@ -59,7 +59,7 @@ position = Vector2(577, 22.5)
 shape = SubResource("RectangleShape2D_2ltg7")
 
 [node name="GoalLeft" type="Area2D" parent="."]
-position = Vector2(-32, 320)
+position = Vector2(-27, 320)
 scale = Vector2(0.5, 0.55)
 metadata/_edit_group_ = true
 
@@ -71,7 +71,7 @@ position = Vector2(1, -0.909302)
 shape = SubResource("RectangleShape2D_lwg1s")
 
 [node name="GoalRight" type="Area2D" parent="."]
-position = Vector2(1187, 319)
+position = Vector2(1176, 319)
 scale = Vector2(0.5, 0.55)
 metadata/_edit_group_ = true
 
